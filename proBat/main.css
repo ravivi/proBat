@@ -1,0 +1,213 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-image: url(images/wood.png);
+}
+
+header {
+  padding: 20px 0;
+}
+
+header .row,
+footer .row {
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  font-weight: 700;
+  margin: 0;
+}
+
+header nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+header p {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  background-image: url('images/maison2.jpg');
+  background-size: cover;
+  color: #ffffff;
+  height: 500px;
+  text-shadow: 0.25px 0.25px 0.25px #000000;
+}
+
+.jumbotron h2 {
+  font-size: 60px;
+  font-weight: 700;
+  margin: 0;
+  color: rgb(139, 147, 155);
+}
+
+.jumbotron h3 {
+  margin: 0 0 20px;
+  color: #fff;
+}
+.cal
+{
+  background: url('images/cal.jpg');
+}
+.zo
+{
+  background-color: #fff;
+  margin-left: 4%;
+}
+form
+{
+  padding: 25px;
+  font-size: 1.3rem;
+}
+h4
+{
+  text-align: center;
+  font-size: 1.3rem;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Open Sans',sans-serif;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0;
+}
+.titre
+{
+  font-family: Neuton,serif;
+  display: block;
+  font-size: 70px;
+  font-weight: 600;
+  padding: 0 0 2rem;
+  color: #FFF;
+  text-align: center;
+}
+.sous
+{
+  font-family: Muli,sans-serif;
+    display: block;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 0 0 2rem;
+    margin: 0 auto;
+    line-height: 140%;
+    color: #fff;
+    text-align: center;
+}
+.contact
+{
+    text-align: center;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+    color: #000;
+    font-size: 30px;
+    line-height: 2;
+    background-color: #fff;
+    width: 250px;
+}
+.decal
+{
+  margin-left: 50px;
+  
+}
+
+section .row img {
+  margin: 0 0 30px;
+  width: 100%;
+}
+img
+{
+  border: 3px solid #fff;
+  border-radius: 5px;
+}
+#loader
+{
+  position: absolute;
+  width: 120%;
+  height: 2000%;
+  z-index: 100;
+  background: #fff;
+}
+.load
+{
+  position: fixed;
+  width: 206px;
+  right: 50%;
+  left: 40%;
+  top: 50%;
+  margin-top:-150px; 
+}
+.load img{
+  position: absolute;
+}
+.logo
+{
+  height: 60px;
+}
+.zoom {
+  height:100%;
+  margin:auto;
+  }
+  .zoom p {
+  text-align:center;
+  }
+  .zoom img {
+  width: 100%;
+  }
+  .zoom img:hover {
+    border: 5px solid rgb(148, 144, 144);
+  width:103%;
+  }
+
+.col-md-6 {
+  margin: 0 0 30px;
+}
+
+
+.vide {
+  border-top: 2px dotted grey;
+  border-bottom: 2px dotted grey;
+}
+
+.separateur {
+  border-top: 2px dotted grey;
+}
+
+footer {
+  font-size: 12px;
+  padding: 20px 0;
+}
+
+footer .col-sm-8 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer li img {
+  width: 32px;
+  height: 32px;
+}
+
+p{
+  font-size:17px;
+}
+
+
+
+
+
+
+
+
+
+
+
