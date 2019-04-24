@@ -1,6 +1,8 @@
 <?php
 require_once 'app/bd.php';
 require 'app/function.php';
+$succes=false;
+$msg="";
 if(!empty($_POST))
 {
     $nom = checkInput($_POST['nom']);
@@ -24,33 +26,42 @@ if(!empty($_POST))
     $post_values = array($nom,$description,$prix,$fondation,$montage,$ciment_brique,$ciment_montage,$ciment_beton,$image);
     $errors=array();
     if(empty($_POST['nom'])){
+        $succes=false;
         $errors['nom']="Vous n'avez pas mis le type de la maison ";
     }
     if(empty($_POST['prix'])){
+        $succes=false;
         $errors['prix']="Vous n'avez pas mis le prix de la maison";
     }
     
     if(empty($_POST['fondation'])){
+        $succes=false;
         $errors['fondation']="Vous n'avez pas l'essentiel du materiel";
     }
     if(empty($_POST['description'])){
+        $succes=false;
         $errors['description']="Vous n'avez pas mis la description de la maison ";
     }
     if(empty($_POST['montage'])){
+        $succes=false;
         $errors['montage']="Vous n'avez pas mis le prix de la maison";
     }
     
     if(empty($_POST['ciment_brique'])){
+        $succes=false;
         $errors['ciment_brique']="Vous n'avez pas l'essentiel du materiel";
     }
     if(empty($_POST['ciment_montage'])){
+        $succes=false;
         $errors['ciment_montage']="Vous n'avez pas l'essentiel du materiel";
     }
     if(empty($_POST['ciment_beton'])){
+        $succes=false;
         $errors['ciment_beton']="Vous n'avez pas l'essentiel du materiel";
     }
     if(empty($image)) 
     {
+        $succes=false;
         $errors['image'] = "Vous n'avez pas mis de photo de profil";
         // $isSuccess = false;
     }
@@ -59,16 +70,19 @@ if(!empty($_POST))
         // $isUploadSuccess = true;
         if($imageExtension != "jpg" && $imageExtension != "png" && $imageExtension != "jpeg" && $imageExtension != "gif" ) 
         {
+            $succes=false;
           $errors['image']= "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
             // $isUploadSuccess = false;
         }
         if(file_exists($imagePath)) 
         {
+            $succes=false;
           $errors['image'] = "Le fichier existe deja";
             // $isUploadSuccess = false;
         }
         if($_FILES["image"]["size"] > 7000000) 
         {
+            $succes=false;
           $errors['image'] = "Le fichier ne doit pas depasser les 500KB";
             // $isUploadSuccess = false;
         }
@@ -83,10 +97,11 @@ if(!empty($_POST))
       }
 
     if(empty($errors))
-    {
+    { 
+        $succes=true;
         move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
         insert($bd,$db_table,$db_column,$db_inconnu,$post_values);
-        echo"La maison a bien été ajouté";   
+        $msg="La maison a bien été ajouté";   
     }
     
 }
@@ -117,7 +132,11 @@ return $data;
 
 <body>
 
-
+<?php if($succes==true): ?>
+                        <div class="alert alert-success">
+                          <p><?=$msg?></p>
+                        </div>
+                      <?php endif; ?>
       <div class="col-sm-3 zo">
         <h4>Ajouter une maison</h4>
           <form class="form-horizontal"  method="post" action="" enctype="multipart/form-data">
@@ -173,6 +192,16 @@ return $data;
                         <input type="file" id="image" name="image" class="form-control input-lg"> 
             
                     </div>
+                    <?php if(!empty($errors)): ?>
+                        <div class="alert alert-danger">
+                          <p>Vous avez mal rempli ce formulaire</p>
+                          <ul>
+                            <?php foreach($errors as $error):?>
+                              <li><?= $error; ?></li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </div>
+                      <?php endif; ?>
                    
       <button type="submit" class="col-lg-12 btn-lg btn-primary">Ajouter</button>
  

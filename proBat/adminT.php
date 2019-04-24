@@ -1,6 +1,7 @@
 <?php
 require_once 'app/bd.php';
 require 'app/function.php';
+$succes=false;
 if(!empty($_POST))
 {
     $nom = checkInput($_POST['nom']);
@@ -21,20 +22,24 @@ if(!empty($_POST))
     $post_values = array($nom,$email,$tel,$category,$commune,$image);
     $errors=array();
     if(empty($_POST['nom'])){
+      $succes=false;
         $errors['nom']="Vous avez pas mis de nom";
     }
     
     
     
     if(empty($_POST['tel'])){
+      $succes=false;
         $errors['tel']="Vous avez pas mis Votre numero de téléphone";
     }
     
     if(empty($_POST['commune'])){
+      $succes=false;
         $errors['commune']="Vous avez pas mis votre situation gégraphique";
     }
     if(empty($image)) 
     {
+      $succes=false;
         $errors['image'] = "Vous n'avez pas mis de photo de profil";
         // $isSuccess = false;
     }
@@ -43,16 +48,19 @@ if(!empty($_POST))
         // $isUploadSuccess = true;
         if($imageExtension != "jpg" && $imageExtension != "png" && $imageExtension != "jpeg" && $imageExtension != "gif" ) 
         {
+          $succes=false;
           $errors['image']= "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
             // $isUploadSuccess = false;
         }
         if(file_exists($imagePath)) 
         {
+          $succes=false;
           $errors['image'] = "Le fichier existe deja";
             // $isUploadSuccess = false;
         }
         if($_FILES["image"]["size"] > 600000) 
         {
+          $succes=false;
           $errors['image'] = "Le fichier ne doit pas depasser les 500KB";
             // $isUploadSuccess = false;
         }
@@ -68,10 +76,11 @@ if(!empty($_POST))
 
     if(empty($errors))
     {
+      $succes=true;
       move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath); 
 
         insert($bd,$db_table,$db_column,$db_inconnu,$post_values);
-        echo"ce travailleur a bien été ajouté";
+        $msg="ce travailleur a bien été ajouté";
     }
     
 }
@@ -101,7 +110,11 @@ return $data;
 </head>
 
 <body>
-
+<?php if($succes==true): ?>
+                        <div class="alert alert-success">
+                          <p><?=$msg?></p>
+                        </div>
+                      <?php endif; ?>
 
 <div class="col-sm-3 zo">
         <h4>Ajout de travailleur</h4>

@@ -37,10 +37,9 @@
             <li role="presentation"><a href="../maison.php">Nos maisons</a></li>
             <li role="presentation"><a href="../expert.php">Nos Expert</a></li>
             
-            <li role="presentation"><?php if(isset($_SESSION['id'])){
+            <li role="presentation"><?php
             echo '<a href="sonProfil.php?id='.$_GET['id'].'">Mon profil</a>';
  
-            }
             ?></li>
             <li role="presentation"><a href="deconnexion.php">Deconnexion</a></li>
           </ul>
